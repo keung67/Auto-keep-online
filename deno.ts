@@ -7,7 +7,7 @@ const urls = [
 ];
 
 const websites = [
-  
+
 ];
 
 // 基本函數
@@ -47,39 +47,47 @@ async function checkUrl(url: string): Promise<boolean> {
 }
 
 // 主要檢查邏輯
-async function checkUrls() {
+async function checkUrls(): Promise<string> {
   const now = new Date();
   const hour = now.getHours();
   const timestamp = now.toLocaleString('zh-TW', { timeZone: 'Asia/Hong_Kong' });
+  let results = [];
 
   // 檢查所有 24 小時 URLs
   for (const url of urls) {
     const success = await checkUrl(url);
-    console.log(`${timestamp} ${url}: ${success ? '成功' : '失敗'}`);
+    results.push(`${timestamp} ${url}: ${success ? '成功' : '失敗'}`);
   }
 
   // 檢查特定時段 URLs
   if (!isInPauseTime(hour)) {
     for (const url of websites) {
       const success = await checkUrl(url);
-      console.log(`${timestamp} ${url}: ${success ? '成功' : '失敗'}`);
+      results.push(`${timestamp} ${url}: ${success ? '成功' : '失敗'}`);
     }
   }
+
+  return results.join('\n');
 }
 
 // 服務處理函數
 async function handler(req: Request): Promise<Response> {
+  const responseHeaders = {
+    "content-type": "text/plain; charset=utf-8",
+    "cache-control": "no-cache",
+  };
+
   const url = new URL(req.url);
   
   if (url.pathname === "/check") {
-    await checkUrls();
-    return new Response("檢查完成", {
-      headers: { "content-type": "text/plain" },
+    const results = await checkUrls();
+    return new Response(`檢查結果：\n\n${results}`, {
+      headers: responseHeaders,
     });
   }
   
   return new Response("URL 檢查服務運行中", {
-    headers: { "content-type": "text/plain" },
+    headers: responseHeaders,
   });
 }
 
