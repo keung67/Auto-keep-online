@@ -3,7 +3,7 @@ import { serve } from "https://deno.land/std@0.218.0/http/server.ts";
 // 設定 URL
 const urls = [
  'https://new-api-latest-4gv0.onrender.com/about',
- 'https://grok2api.onrender.com'
+ // 'https://grok2api.onrender.com'
  // 'https://new-api-latest-4gv0.onrender.com/api/notice',
  // 'https://new-api-latest-4gv0.onrender.com/api/status',
  // 'https://new-api-latest-4gv0.onrender.com/api/home_page_content'
