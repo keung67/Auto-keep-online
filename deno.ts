@@ -4,7 +4,8 @@ import { serve } from "https://deno.land/std@0.218.0/http/server.ts";
 const urls = [
  'https://new-api-latest-4gv0.onrender.com/about',
  'https://pplx2api-wozj.onrender.com',
- 'https://trae2api-yse3.onrender.com'
+ 'https://trae2api-yse3.onrender.com',
+ 'https://qwen2api-hs2k.onrender.com'
  // 'https://new-api-latest-4gv0.onrender.com/api/notice',
  // 'https://new-api-latest-4gv0.onrender.com/api/status',
  // 'https://new-api-latest-4gv0.onrender.com/api/home_page_content'
