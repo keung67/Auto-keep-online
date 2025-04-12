@@ -76,7 +76,7 @@ async function checkUrls(): Promise<string> {
 }
 
 // 設定 12 分鐘執行一次的定時任務
-Deno.cron("URL checker", "*/12 * * * *", checkUrls);
+Deno.cron("URL checker", "*/11 * * * *", checkUrls);
 
 // 服務處理函數
 async function handler(req: Request): Promise<Response> {
